@@ -67,7 +67,8 @@
         $docaogam = $_POST['docaogam'];
         $trongluong = $_POST['trongluong'];
         $baohanh = $_POST['baohanh'];
-        $sql1 = 'insert into chitietxe(MaXe,Loai) values("'.$maxe.'")';
+        $sql1 = 'insert into chitietxe(MaXe,Loai,DungTich,CongXuat,Momen,KhoiDong,TieuThu,TruyenLuc,PhanhTruoc,PhanhSau,LopTruoc,LopSau,DenTruoc,DenSau,KichThuoc,DoCao,KhoangCach,DoCaoGam,TrongLuong,BaoHanh)
+        values("'.$maxe.'","'.$loai.'","'.$dungtich.'","'.$congxuat.'","'.$momen.'","'.$khoidong.'","'.$tieuthu.'","'.$truyenluc.'","'.$phanhtruoc.'","'.$phanhsau.'","'.$loptruoc.'","'.$lopsau.'","'.$dentruoc.'","'.$densau.'","'.$kichthuoc.'","'.$docao.'","'.$khoangcach.'","'.$docaogam.'","'.$trongluong.'","'.$baohanh.'")';
         mysqli_query($con,$sql1);
         foreach($_FILES['hinhs']['name'] as $key=>$value){
             $tenhinh_tmp   = $_FILES['hinhs']['tmp_name'][$key];
