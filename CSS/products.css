@@ -1,0 +1,132 @@
+.header {
+    background-color: #ffffff;
+}
+.main {
+    background-color: #cccccc;
+}
+.main-bg {
+    width: 100%;
+    height: auto;
+    background-image: url(../IMG/product-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding-top: 150px;
+    padding-bottom: 70px;
+}
+.main-content {
+    width: 80%;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #ffffff;
+    box-shadow: 0 1.5rem 3rem rgba(0,0,0,0.4);
+}
+.main-title {
+    background: #eee;
+    padding: 10px;
+}
+.main-title h1 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+.main-product {
+    margin-top: 25px;
+}
+.main-product-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+}
+.main-product-col {
+    width: 33.33333%;
+    padding: 0 10px;
+}
+.main-product-list {
+    height: 1000px;
+}
+.main-product-list.moto {
+    border-top: 10px solid #013599;
+    background: -webkit-linear-gradient(top, #d9e0f0 20%, #fefefe 100%);
+}
+.main-product-list.scooter {
+    border-top: 10px solid #640200;
+    background: -webkit-linear-gradient(top, #f4e4e4 20%, #fefefe 100%);
+}
+.main-product-list.sportbike {
+    border-top: 10px solid #000000;
+    background: -webkit-linear-gradient(top, #d3c9c9 20%, #fefefe 100%);
+}
+.main-product-title {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+    text-transform: uppercase;
+}
+.main-product-list.moto .main-product-title {
+    color: #013599;
+}
+.main-product-list.scooter .main-product-title {
+    color: #640200;
+}
+.main-product-list.sportbike .main-product-title {
+    color: #000000;
+}
+.main-product-item {
+    position: relative;
+    display: block;
+    width: 95%;
+    text-align: center;
+    padding-bottom: 25px;
+}
+.main-product-item-bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 65%;
+    border-top-right-radius: 15px;
+    background: -webkit-linear-gradient(top, #fff 0%, rgba(255,255,255,0) 100%);
+}
+.main-product-item-name {
+    text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 2rem;
+    padding-top: 10px;
+    position: relative;
+    margin: 0;
+}
+.main-product-item-link img {
+    width: 60%;
+    position: relative;
+    margin-top: 20px;
+}
+.main-product-item-link img:hover {
+    transform: scale(1.3);
+}
+.main-product-item-bottom {
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+.main-product-item-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding-left: 10px;
+}
+.main-product-item-btn {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color:#ffffff;
+    font-weight: 700;
+    text-align: center;
+    background-color: black;
+    padding: 5px 10px;
+    border-top: 2px solid #b3b3b3;
+    transition-duration: 0.5s;
+}
