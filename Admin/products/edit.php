@@ -51,23 +51,68 @@
     }
     else
         header('location: ../products.php');
-    // if(isset($_POST['sua']))
-    // {
-    //     $tenkh1 = $_POST['tenkh'];
-    //     $diachi1 = $_POST['diachi'];
-    //     $sdt1 = $_POST['sdt'];
-    //     $email1 = $_POST['email'];
-    //     if($tenkh1 != '' && $diachi1 != '' && $sdt1 != '' && $email1 != '')
-    //     {
-    //         $sql1 = 'update khachhang set TenKH = "'.$tenkh1.'", DiaChi = "'.$diachi1.'", Sdt = "'.$sdt1.'", Email = "'.$email1.'" where MaKH = "'.$id.'"';
-    //         if(mysqli_query($con, $sql1))
-    //         {
-    //             header('location:../customers.php');
-    //         }
-    //     }
-    //     else
-    //         $tbao = '<script>alert(\'Bạn vui lòng nhập đầy đủ thông tin.\');</script>';
-    // }
+    function uploadhinh($tenfile_tmp, $tenfile_full) {
+        $ktra = 1;
+        if (file_exists($tenfile_full)) {
+            $ktra = 0;
+        }
+        if ($_FILES['hinh']['size'] > 5*1024*1024) {
+            $tbao = '<script>alert(\'Kích thước file phải <5MB.\');</script>';
+            $ktra = 0;
+        }
+        $kieu_file = strtolower(pathinfo($tenfile_full,PATHINFO_EXTENSION));
+        $mang_kieu_file = array('jpg','jpeg','png','gif');
+        if(!in_array($kieu_file, $mang_kieu_file)) {
+            $tbao = '<script>alert(\'Chỉ nhận các kiểu file JPG, JPEG, PNG & GIF.\');</script>';
+            $ktra = 0;
+        }
+        if ($ktra==1) {
+            move_uploaded_file($tenfile_tmp, $tenfile_full);
+        }
+    }
+    if(isset($_POST['sua']))
+    {
+        $tenxe = $_POST['tenxe'];
+        $loaixe = $_POST['loaixe'];
+        $gia = $_POST['gia'];
+        $gia = str_replace(",","",$gia);
+        if(isset($_POST['hienthi']))
+            $hienthi = $_POST['hienthi'];
+        else
+            $hienthi = 0;
+        $loai = $_POST['loai'];
+        $dungtich = $_POST['dungtich'];
+        $congxuat = $_POST['congxuat'];
+        $momen = $_POST['momen'];
+        $khoidong = $_POST['khoidong'];
+        $tieuthu = $_POST['tieuthu'];
+        $truyenluc = $_POST['truyenluc'];
+        $phanhtruoc = $_POST['phanhtruoc'];
+        $phanhsau = $_POST['phanhsau'];
+        $loptruoc = $_POST['loptruoc'];
+        $lopsau = $_POST['lopsau'];
+        $dentruoc = $_POST['dentruoc'];
+        $densau = $_POST['densau'];
+        $kichthuoc = $_POST['kichthuoc'];
+        $docao = $_POST['docao'];
+        $khoangcach = $_POST['khoangcach'];
+        $docaogam = $_POST['docaogam'];
+        $trongluong = $_POST['trongluong'];
+        $baohanh = $_POST['baohanh'];
+        $sql1 = 'update xe set TenXe = "'.$tenxe.'", MaLoai = "'.$loaixe.'", Gia = "'.$gia.'", HienThi = '.$hienthi.' where MaXe = "'.$id.'" ';
+        mysqli_query($con,$sql1);
+        $sql2 = 'update chitietxe set Loai = "'.$loai.'", DungTich = "'.$dungtich.'", CongXuat = "'.$congxuat.'", Momen = "'.$momen.'", KhoiDong = "'.$khoidong.'",
+        TieuThu = "'.$tieuthu.'", TruyenLuc = "'.$truyenluc.'", PhanhTruoc = "'.$phanhtruoc.'", PhanhSau = "'.$phanhsau.'", LopTruoc = "'.$loptruoc.'", LopSau = "'.$lopsau.'",
+        DenTruoc = "'.$dentruoc.'", DenSau = "'.$densau.'", KichThuoc = "'.$kichthuoc.'", DoCao = "'.$docao.'", KhoangCach = "'.$khoangcach.'", DoCaoGam = "'.$docaogam.'", 
+        TrongLuong = "'.$trongluong.'", BaoHanh = "'.$baohanh.'" where MaXe = "'.$maxe.'" ';
+        mysqli_query($con,$sql2);
+        if(isset($_FILES['hinh']['name']))
+        {
+            echo '1';
+        }
+        else
+            echo '2';
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -128,7 +173,7 @@
                     <div class="modal-body-group">
                         <span class="modal-body-label">Hiển thị:</span>
                         <div class="checkbox" style ="width: 350px">
-                            <input class="" type="checkbox" name="hienthi" id="hienthi" value="hienthi" <?php if($hienthi==1) echo 'checked = "checked"'; ?>></input>
+                            <input class="" type="checkbox" name="hienthi" id="hienthi" value="1" <?php if($hienthi==1) echo 'checked = "checked"'; ?>></input>
                             <label for="hienthi" style = "font-size: 1.8rem; margin-left:5px">Hiển thị</label>
                         </div>
                     </div>
@@ -216,37 +261,37 @@
                     <div class="modal-body-group">
                         <span class="modal-body-label">Hình ảnh chi tiết:</span>
                         <img src="../../IMG/Product/<?php if(isset($hinh1)) echo $hinh1; ?>" alt="" style = "width: 250px">
-                        <input class="modal-body-input" type="file" name="hinh" id="hinh" style = "width: 90px; font-size: 1.6rem">
+                        <input class="modal-body-input" type="file" name="hinh1" id="hinh1" style = "width: 90px; font-size: 1.6rem">
                     </div>
                     <div class="modal-body-group">
                         <span class="modal-body-label">Hình ảnh chi tiết:</span>
                         <img src="../../IMG/Product/<?php if(isset($hinh2)) echo $hinh2; ?>" alt="" style = "width: 250px">
-                        <input class="modal-body-input" type="file" name="hinh" id="hinh" style = "width: 90px; font-size: 1.6rem">
+                        <input class="modal-body-input" type="file" name="hinh2" id="hinh2" style = "width: 90px; font-size: 1.6rem">
                     </div>
                     <div class="modal-body-group">
                         <span class="modal-body-label">Hình ảnh chi tiết:</span>
                         <img src="../../IMG/Product/<?php if(isset($hinh3)) echo $hinh3; ?>" alt="" style = "width: 250px">
-                        <input class="modal-body-input" type="file" name="hinh" id="hinh" style = "width: 90px; font-size: 1.6rem">
+                        <input class="modal-body-input" type="file" name="hinh3" id="hinh3" style = "width: 90px; font-size: 1.6rem">
                     </div>
                     <div class="modal-body-group">
                         <span class="modal-body-label">Hình ảnh chi tiết:</span>
                         <img src="../../IMG/Product/<?php if(isset($hinh4)) echo $hinh4; ?>" alt="" style = "width: 250px">
-                        <input class="modal-body-input" type="file" name="hinh" id="hinh" style = "width: 90px; font-size: 1.6rem">
+                        <input class="modal-body-input" type="file" name="hinh4" id="hinh4" style = "width: 90px; font-size: 1.6rem">
                     </div>
                     <div class="modal-body-group">
                         <span class="modal-body-label">Hình ảnh chi tiết:</span>
                         <img src="../../IMG/Product/<?php if(isset($hinh5)) echo $hinh5; ?>" alt="" style = "width: 250px">
-                        <input class="modal-body-input" type="file" name="hinh" id="hinh" style = "width: 90px; font-size: 1.6rem">
+                        <input class="modal-body-input" type="file" name="hinh5" id="hinh5" style = "width: 90px; font-size: 1.6rem">
                     </div>
                     <div class="modal-body-group">
                         <span class="modal-body-label">Hình ảnh chi tiết:</span>
                         <img src="../../IMG/Product/<?php if(isset($hinh6)) echo $hinh6; ?>" alt="" style = "width: 250px">
-                        <input class="modal-body-input" type="file" name="hinh" id="hinh" style = "width: 90px; font-size: 1.6rem">
+                        <input class="modal-body-input" type="file" name="hinh6" id="hinh6" style = "width: 90px; font-size: 1.6rem">
                     </div>
                     <div class="modal-body-group">
                         <span class="modal-body-label">Hình ảnh chi tiết:</span>
                         <img src="../../IMG/Product/<?php if(isset($hinh7)) echo $hinh7; ?>" alt="" style = "width: 250px">
-                        <input class="modal-body-input" type="file" name="hinh" id="hinh" style = "width: 90px; font-size: 1.6rem">
+                        <input class="modal-body-input" type="file" name="hinh7" id="hinh7" style = "width: 90px; font-size: 1.6rem">
                     </div>
                     <div class="modal-body-btn">
                         <input type="submit" name="sua" id="sua" value="Lưu" onclick="" />
