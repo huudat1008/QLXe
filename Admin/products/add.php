@@ -239,11 +239,11 @@
                     </div>
                     <div class="modal-body-group">
                         <span class="modal-body-label">Hình ảnh hiển thị:</span>
-                        <input class="modal-body-input" type="file" name="hinh" id="hinh" style = "width: 90px; font-size: 1.6rem">
+                        <input class="modal-body-input" type="file" name="hinh" id="hinh" accept = ".png,.jpg,.jpeg,.gif" style = "width: 90px; font-size: 1.6rem">
                     </div>
                     <div class="modal-body-group">
                         <span class="modal-body-label">Hình ảnh chi tiết:</span>
-                        <input class="modal-body-input" type="file" name="hinhs[]" id="hinhs" multiple style = "width: 90px; font-size: 1.6rem">
+                        <input class="modal-body-input" type="file" name="hinhs[]" id="hinhs" accept = ".png,.jpg,.jpeg,.gif" multiple style = "width: 90px; font-size: 1.6rem">
                     </div>
                     <div class="modal-body-btn">
                         <input type="submit" name="them" id="them" value="Thêm" onclick="" />
