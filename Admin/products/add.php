@@ -13,89 +13,98 @@
         $tenxe = $_POST['tenxe'];
         $loaixe = $_POST['loaixe'];
         $gia = $_POST['gia'];
-        $hienthi = $_POST['hienthi'];
+        if(isset($_POST['hienthi']))
+            $hienthi = $_POST['hienthi'];
         $thumuc_hinh = '../../IMG/Product/';
         $tenfile = basename($_FILES['hinh']['name']);
         $tenfile_tmp = $_FILES['hinh']['tmp_name'];
         $tenfile_full = $thumuc_hinh. $tenfile;
+        $kq_upload_hinh = 0;
         $ktra = 1;
-        if (file_exists($tenfile_full)) {
-            $tbao = '<script>alert(\'Tên file hình này bị trùng.\');</script>';
-            $ktra = 0;
-        }
-        if ($_FILES['hinh']['size'] > 5*1024*1024) {
-            $tbao = '<script>alert(\'Kích thước file phải <5MB.\');</script>';
-            $ktra = 0;
-        }
-        $kieu_file = strtolower(pathinfo($tenfile_full,PATHINFO_EXTENSION));
         $mang_kieu_file = array('jpg','jpeg','png','gif');
-        if(!in_array($kieu_file, $mang_kieu_file)) {
-            $tbao = '<script>alert(\'Chỉ nhận các kiểu file JPG, JPEG, PNG & GIF.\');</script>';
-            $ktra = 0;
-        }
-        if ($ktra==1) {
-            if (move_uploaded_file($tenfile_tmp, $tenfile_full)) {
-                $kq_upload_hinh = 1;
-            } else {
-                $kq_upload_hinh = 0;
-            }
-        }
-        if ($kq_upload_hinh==1 && $maxe != '' && $tenxe != '' && $loaixe != '' && $gia != '' && $hienthi != ''){
-            $sql = 'insert into xe(MaXe,TenXe,MaLoai,Gia,HienThi,Hinh) values("'.$maxe.'","'.$tenxe.'","'.$loaixe.'","'.$gia.'","'.$hienthi.'","'.$tenfile.'")';
-            if(!mysqli_query($con,$sql))
-                $tbao = '<script>alert(\'Mã xe bị trùng.\');</script>';
-        }
-        else {
-            $tbao = '<script>alert(\'Upload hình không thành công.\nVui lòng kiểm tra và thử lại.\');</script>';
-        }
-        $loai = $_POST['loai'];
-        $dungtich = $_POST['dungtich'];
-        $congxuat = $_POST['congxuat'];
-        $momen = $_POST['momen'];
-        $khoidong = $_POST['khoidong'];
-        $tieuthu = $_POST['tieuthu'];
-        $truyenluc = $_POST['truyenluc'];
-        $phanhtruoc = $_POST['phanhtruoc'];
-        $phanhsau = $_POST['phanhsau'];
-        $loptruoc = $_POST['loptruoc'];
-        $lopsau = $_POST['lopsau'];
-        $dentruoc = $_POST['dentruoc'];
-        $densau = $_POST['densau'];
-        $kichthuoc = $_POST['kichthuoc'];
-        $docao = $_POST['docao'];
-        $khoangcach = $_POST['khoangcach'];
-        $docaogam = $_POST['docaogam'];
-        $trongluong = $_POST['trongluong'];
-        $baohanh = $_POST['baohanh'];
-        $sql1 = 'insert into chitietxe(MaXe,Loai,DungTich,CongXuat,Momen,KhoiDong,TieuThu,TruyenLuc,PhanhTruoc,PhanhSau,LopTruoc,LopSau,DenTruoc,DenSau,KichThuoc,DoCao,KhoangCach,DoCaoGam,TrongLuong,BaoHanh)
-        values("'.$maxe.'","'.$loai.'","'.$dungtich.'","'.$congxuat.'","'.$momen.'","'.$khoidong.'","'.$tieuthu.'","'.$truyenluc.'","'.$phanhtruoc.'","'.$phanhsau.'","'.$loptruoc.'","'.$lopsau.'","'.$dentruoc.'","'.$densau.'","'.$kichthuoc.'","'.$docao.'","'.$khoangcach.'","'.$docaogam.'","'.$trongluong.'","'.$baohanh.'")';
-        mysqli_query($con,$sql1);
-        foreach($_FILES['hinhs']['name'] as $key=>$value){
-            $tenhinh_tmp   = $_FILES['hinhs']['tmp_name'][$key];
-            $tenhinh = basename($_FILES['hinhs']['name'][$key]);
-            $tenhinh_full = $thumuc_hinh.$tenhinh;
-            $ktra1 = 1;
-            if (file_exists($tenhinh_full)) {
+        if($tenfile != '' && $maxe != '' && $tenxe != '' && $loaixe != '' && $gia != '' && $hienthi != '')
+        {
+            if (file_exists($tenfile_full)) {
                 $tbao = '<script>alert(\'Tên file hình này bị trùng.\');</script>';
-                $ktra1 = 0;
+                $ktra = 0;
             }
-            if ($_FILES['hinhs']['size'][$key] > 5*1024*1024) {
+            if ($_FILES['hinh']['size'] > 5*1024*1024) {
                 $tbao = '<script>alert(\'Kích thước file phải <5MB.\');</script>';
-                $ktra1 = 0;
+                $ktra = 0;
             }
-            $kieu_file1 = strtolower(pathinfo($tenhinh_full,PATHINFO_EXTENSION));
-            if(!in_array($kieu_file1, $mang_kieu_file)) {
+            $kieu_file = strtolower(pathinfo($tenfile_full,PATHINFO_EXTENSION));
+            if(!in_array($kieu_file, $mang_kieu_file)) {
                 $tbao = '<script>alert(\'Chỉ nhận các kiểu file JPG, JPEG, PNG & GIF.\');</script>';
-                $ktra1 = 0;
+                $ktra = 0;
             }
-            if ($ktra1==1) {
-                if (move_uploaded_file($tenhinh_tmp, $tenhinh_full)) {
-                    $i = $key+1;
-                    $sql2 = 'update chitietxe set hinh'.$i.'= "'.$tenhinh.'" where MaXe = "'.$maxe.'" ';
-                    mysqli_query($con,$sql2);
+            if ($ktra==1) {
+                if (move_uploaded_file($tenfile_tmp, $tenfile_full)) {
+                    $kq_upload_hinh = 1;
+                } else {
+                    $kq_upload_hinh = 0;
+                }
+            }
+            if ($kq_upload_hinh==1){
+                $sql = 'insert into xe(MaXe,TenXe,MaLoai,Gia,HienThi,Hinh) values("'.$maxe.'","'.$tenxe.'","'.$loaixe.'","'.$gia.'","'.$hienthi.'","'.$tenfile.'")';
+                if(!mysqli_query($con,$sql))
+                    $tbao = '<script>alert(\'Mã xe bị trùng.\');</script>';
+            }
+            else {
+                $tbao = '<script>alert(\'Upload hình không thành công.\nVui lòng kiểm tra và thử lại.\');</script>';
+            }
+            $loai = $_POST['loai'];
+            $dungtich = $_POST['dungtich'];
+            $congxuat = $_POST['congxuat'];
+            $momen = $_POST['momen'];
+            $khoidong = $_POST['khoidong'];
+            $tieuthu = $_POST['tieuthu'];
+            $truyenluc = $_POST['truyenluc'];
+            $phanhtruoc = $_POST['phanhtruoc'];
+            $phanhsau = $_POST['phanhsau'];
+            $loptruoc = $_POST['loptruoc'];
+            $lopsau = $_POST['lopsau'];
+            $dentruoc = $_POST['dentruoc'];
+            $densau = $_POST['densau'];
+            $kichthuoc = $_POST['kichthuoc'];
+            $docao = $_POST['docao'];
+            $khoangcach = $_POST['khoangcach'];
+            $docaogam = $_POST['docaogam'];
+            $trongluong = $_POST['trongluong'];
+            $baohanh = $_POST['baohanh'];
+            $sql1 = 'insert into chitietxe(MaXe,Loai,DungTich,CongXuat,Momen,KhoiDong,TieuThu,TruyenLuc,PhanhTruoc,PhanhSau,LopTruoc,LopSau,DenTruoc,DenSau,KichThuoc,DoCao,KhoangCach,DoCaoGam,TrongLuong,BaoHanh)
+            values("'.$maxe.'","'.$loai.'","'.$dungtich.'","'.$congxuat.'","'.$momen.'","'.$khoidong.'","'.$tieuthu.'","'.$truyenluc.'","'.$phanhtruoc.'","'.$phanhsau.'","'.$loptruoc.'","'.$lopsau.'","'.$dentruoc.'","'.$densau.'","'.$kichthuoc.'","'.$docao.'","'.$khoangcach.'","'.$docaogam.'","'.$trongluong.'","'.$baohanh.'")';
+            mysqli_query($con,$sql1);
+            foreach($_FILES['hinhs']['name'] as $key=>$value){
+                $tenhinh_tmp   = $_FILES['hinhs']['tmp_name'][$key];
+                $tenhinh = basename($_FILES['hinhs']['name'][$key]);
+                $tenhinh_full = $thumuc_hinh.$tenhinh;
+                $ktra1 = 1;
+                if (file_exists($tenhinh_full)) {
+                    $tbao = '<script>alert(\'Tên file hình này bị trùng.\');</script>';
+                    $ktra1 = 0;
+                }
+                if ($_FILES['hinhs']['size'][$key] > 5*1024*1024) {
+                    $tbao = '<script>alert(\'Kích thước file phải <5MB.\');</script>';
+                    $ktra1 = 0;
+                }
+                $kieu_file1 = strtolower(pathinfo($tenhinh_full,PATHINFO_EXTENSION));
+                if(!in_array($kieu_file1, $mang_kieu_file)) {
+                    $tbao = '<script>alert(\'Chỉ nhận các kiểu file JPG, JPEG, PNG & GIF.\');</script>';
+                    $ktra1 = 0;
+                }
+                if ($ktra1==1) {
+                    if (move_uploaded_file($tenhinh_tmp, $tenhinh_full)) {
+                        $i = $key+1;
+                        $sql2 = 'update chitietxe set hinh'.$i.'= "'.$tenhinh.'" where MaXe = "'.$maxe.'" ';
+                        mysqli_query($con,$sql2);
+                        header('location: ../products.php');
+                    }
                 }
             }
         }
+        else 
+            $tbao = '<script>alert(\'Bạn phải nhập đủ thông tin.\');</script>';
+        
     }
 ?>
 <!DOCTYPE html>
