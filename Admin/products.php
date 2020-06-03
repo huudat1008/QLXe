@@ -10,6 +10,25 @@
         unset($_SESSION['user']);
         header('location: login.php');
     }
+    if(isset($_POST['ok']))
+    {
+        $timkiem = $_POST['timkiem'];
+        $sql = 'SELECT xe.*,loaixe.TenLoai FROM xe, loaixe WHERE xe.MaLoai = loaixe.MaLoai and TenXe like "%'.$timkiem.'%"';
+    }
+    else
+        $sql = 'SELECT xe.*,loaixe.TenLoai FROM xe, loaixe WHERE xe.MaLoai = loaixe.MaLoai';
+    if(isset($_POST['loc']))
+    {
+        $loc = $_POST['chon'];
+        if($loc == 'all')
+        {
+            $sql = 'SELECT xe.*,loaixe.TenLoai FROM xe, loaixe WHERE xe.MaLoai = loaixe.MaLoai';
+        }
+        else
+        {
+            $sql = 'SELECT xe.*,loaixe.TenLoai FROM xe, loaixe WHERE xe.MaLoai = loaixe.MaLoai and xe.MaLoai = "'.$loc.'"';
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,11 +62,21 @@
         <div class="body-main">
             <div class="body-main-header">
                 <img src="../IMG/khachhang.png" alt="" class="body-left-group-icon">
-                <span class="body-main-header-title">Quản lý sản phẩm</span>
+                <span class="body-main-header-title">Danh sách sản phẩm</span>
             </div>
             <div class="body-main-content">
                 <div class="body-main-content-header">
-                    <span class="body-main-content-header-title">Danh sách các sản phẩm</span>
+                    <form action="" method="post">
+                        <input type="text" name="timkiem" id="timkiem" placeholder="Nhập tên sản phẩm" value="<?php if(isset($timkiem)) echo $timkiem; ?>">
+                        <input type="submit" name="ok" id="ok" value="Tìm kiếm" onclick="" />
+                        <select id="chon" name="chon" style = "font-size: 2rem,padding-left: 10px; margin-left: 30px">
+                            <option value="all" <?php if(isset($loc)){if($loc == 'all') echo 'selected = "selected"';} ?>>Tất cả</option>
+                            <option value="XS" <?php if(isset($loc)){if($loc == 'XS') echo 'selected = "selected"';} ?>>Xe số</option>
+                            <option value="XG" <?php if(isset($loc)){if($loc == 'XG') echo 'selected = "selected"';} ?>>Xe ga</option>
+                            <option value="TT" <?php if(isset($loc)){if($loc == 'TT') echo 'selected = "selected"';} ?>>Xe thể thao</option>
+                        </select>
+                        <input type="submit" name="loc" id="loc" value="Lọc sản phẩm" onclick="" />
+                    </form>
                     <a href="products/add.php" class="add">
                         <img src="../IMG/add.png" alt="" class="add-img">
                         <span class="add-content">Thêm mới</span>
@@ -66,7 +95,6 @@
                     </tr>
                     <?php
                         $stt = 1;
-                        $sql = 'SELECT xe.*,loaixe.TenLoai FROM xe, loaixe WHERE xe.MaLoai = loaixe.MaLoai';
                         $rs = mysqli_query($con, $sql);
                         while ($r = mysqli_fetch_assoc($rs)){
                             $maxe = $r['MaXe'];

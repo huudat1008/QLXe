@@ -138,6 +138,7 @@ html a {
 /**********/
 .body-main {
     margin-top: 50px;
+    margin-bottom: 30px;
 }
 .body-right {
     width: 100%;
@@ -165,7 +166,8 @@ html a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 30px;
+    padding: 15px 30px;
+    
 }
 .body-main-content-header-title {
     font-size: 2rem;
@@ -204,4 +206,36 @@ html a {
 .table-img {
     width: 20px;
     margin: 0 5px 0 5px;
+}
+.report {
+    display: flex;
+    justify-content: space-around;
+    margin: 30px;
+}
+.report-body {
+    background-color: #dcdcdc;
+    padding: 10px;
+    border-radius: 5px;
+}
+.report-body-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.report-body-top span {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-right: 50px;
+}
+.report-body-top img {
+    width: 50px;
+    margin-left: 50px;
+}
+.report-body-bottom {
+    text-align: center;
+}
+.report-body-bottom span {
+    font-size: 2rem;
+    font-weight: bold;
 }

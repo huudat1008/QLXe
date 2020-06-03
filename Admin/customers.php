@@ -10,6 +10,13 @@
         unset($_SESSION['user']);
         header('location: login.php');
     }
+    if(isset($_POST['ok']))
+    {
+        $timkiem = $_POST['timkiem'];
+        $sql = 'select * from khachhang where TenKH like "%'.$timkiem.'%"';
+    }
+    else
+        $sql = 'select * from khachhang';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,11 +50,14 @@
         <div class="body-main">
         	<div class="body-main-header">
                 <img src="../IMG/khachhang.png" alt="" class="body-left-group-icon">
-                <span class="body-main-header-title">Quản lý khách hàng</span>
+                <span class="body-main-header-title">Danh sách khách hàng</span>
             </div>
             <div class="body-main-content">
                 <div class="body-main-content-header">
-                    <span class="body-main-content-header-title">Danh sách khách hàng</span>
+                    <form action="" method="post">
+                        <input type="text" name="timkiem" id="timkiem" placeholder="Nhập tên khách hàng" value="<?php if(isset($timkiem)) echo $timkiem; ?>">
+                        <input type="submit" name="ok" id="ok" value="Tìm kiếm" onclick="" />
+                    </form>
                 </div>
                 <table class="body-main-content-table">
                     <tr>
@@ -60,7 +70,6 @@
                     </tr>
                     <?php
                         $stt = 1;
-                        $sql = 'select * from khachhang';
                         $rs = mysqli_query($con, $sql);
                         while ($r = mysqli_fetch_assoc($rs)){
                             $makh = $r['MaKH'];

@@ -10,6 +10,13 @@
         unset($_SESSION['user']);
         header('location: login.php');
     }
+    if(isset($_POST['ok']))
+    {
+        $timkiem = $_POST['timkiem'];
+        $sql = 'select * from user where Username like "%'.$timkiem.'%"';
+    }
+    else
+        $sql = 'select * from user';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,11 +50,14 @@
         <div class="body-main">
         	<div class="body-main-header">
                 <img src="../IMG/user.png" alt="" class="body-left-group-icon">
-                <span class="body-main-header-title">Quản lý User</span>
+                <span class="body-main-header-title">Danh sách các User</span>
             </div>
             <div class="body-main-content">
                 <div class="body-main-content-header">
-                    <span class="body-main-content-header-title">Danh sách các User</span>
+                    <form action="" method="post">
+                        <input type="text" name="timkiem" id="timkiem" placeholder="Nhập Username" value="<?php if(isset($timkiem)) echo $timkiem; ?>">
+                        <input type="submit" name="ok" id="ok" value="Tìm kiếm" onclick="" />
+                    </form>
                     <a href="user/add.php" class="add">
                         <img src="../IMG/add.png" alt="" class="add-img">
                         <span class="add-content">Thêm mới</span>
@@ -63,7 +73,6 @@
                     <?php
                         $stt = 1;
                         $pass = '';
-                        $sql = 'select * from user';
                         $rs = mysqli_query($con, $sql);
                         while ($r = mysqli_fetch_assoc($rs)){
                             $username = $r['Username'];
