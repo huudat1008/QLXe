@@ -7,13 +7,19 @@
     $user = $_SESSION['user'];
     if(isset($_POST['huybo']))
         header('location: ../products.php');
+    $hinh1 = '';
+    $hinh2 = '';
+    $hinh3 = '';
+    $hinh4 = '';
+    $hinh5 = '';
+    $hinh6 = '';
+    $hinh7 = '';
     if (isset($_GET['id']))
     {
         $id = $_GET['id'];
         $sql = 'select chitietxe.*,TenXe,Gia,Hinh,MaLoai,HienThi FROM chitietxe,xe where chitietxe.MaXe="'.$id.'" and chitietxe.MaXe = xe.MaXe';
         $rs = mysqli_query($con, $sql);
-        while ($row = mysqli_fetch_assoc($rs))
-        {
+        $row = mysqli_fetch_assoc($rs);
             $maxe = $row['MaXe'];
             $tenxe = $row['TenXe'];
             $maloai = $row['MaLoai'];
@@ -47,7 +53,6 @@
             $hinh5 = $row['Hinh5'];
             $hinh6 = $row['Hinh6'];
             $hinh7 = $row['Hinh7'];
-        }
     }
     else
         header('location: ../products.php');
@@ -107,76 +112,84 @@
         TrongLuong = "'.$trongluong.'", BaoHanh = "'.$baohanh.'" where MaXe = "'.$maxe.'" ';
         mysqli_query($con,$sql2);
         $thumuc_hinh = '../../IMG/Product/';
-        if(isset($_FILES['hinh']['name']))
+        if($_FILES['hinh']['name'] != null)
         {
             $tenfile = basename($_FILES['hinh']['name']);
             $tenfile_tmp = $_FILES['hinh']['tmp_name'];
             $tenfile_full = $thumuc_hinh. $tenfile;
             uploadhinh($tenfile_tmp, $tenfile_full);
+            unlink('../../IMG/Product/'.$hinh);          
             $sqlhinh = 'update xe set Hinh = "'.$tenfile.'" where MaXe = "'.$id.'" ';
             mysqli_query($con,$sqlhinh);
         }
-        if(isset($_FILES['hinh1']['name']))
+        if($_FILES['hinh1']['name'] != null)
         {
             $tenfile1 = basename($_FILES['hinh1']['name']);
             $tenfile_tmp1 = $_FILES['hinh1']['tmp_name'];
             $tenfile_full1 = $thumuc_hinh. $tenfile1;
             uploadhinh($tenfile_tmp1, $tenfile_full1);
-            $sqlhinh1 = 'update xe set Hinh1 = "'.$tenfile1.'" where MaXe = "'.$id.'" ';
+            unlink('../../IMG/Product/'.$hinh1);
+            $sqlhinh1 = 'update chitietxe set Hinh1 = "'.$tenfile1.'" where MaXe = "'.$id.'" ';
             mysqli_query($con,$sqlhinh1);
         }
-        if(isset($_FILES['hinh2']['name']))
+        if($_FILES['hinh2']['name'] != null)
         {
             $tenfile2 = basename($_FILES['hinh2']['name']);
             $tenfile_tmp2 = $_FILES['hinh2']['tmp_name'];
             $tenfile_full2 = $thumuc_hinh. $tenfile2;
             uploadhinh($tenfile_tmp2, $tenfile_full2);
+            unlink('../../IMG/Product/'.$hinh2);
             $sqlhinh2 = 'update chitietxe set Hinh2 = "'.$tenfile2.'" where MaXe = "'.$id.'" ';
             mysqli_query($con,$sqlhinh2);
         }
-        if(isset($_FILES['hinh3']['name']))
+        if($_FILES['hinh3']['name'] != null)
         {
             $tenfile3 = basename($_FILES['hinh3']['name']);
             $tenfile_tmp3 = $_FILES['hinh3']['tmp_name'];
             $tenfile_full3 = $thumuc_hinh. $tenfile3;
             uploadhinh($tenfile_tmp3, $tenfile_full3);
+            unlink('../../IMG/Product/'.$hinh3);
             $sqlhinh3 = 'update chitietxe set Hinh3 = "'.$tenfile3.'" where MaXe = "'.$id.'" ';
             mysqli_query($con,$sqlhinh3);
         }
-        if(isset($_FILES['hinh4']['name']))
+        if($_FILES['hinh4']['name'] != null)
         {
             $tenfile4 = basename($_FILES['hinh4']['name']);
             $tenfile_tmp4 = $_FILES['hinh4']['tmp_name'];
             $tenfile_full4 = $thumuc_hinh. $tenfile4;
             uploadhinh($tenfile_tmp4, $tenfile_full4);
+            unlink('../../IMG/Product/'.$hinh4);
             $sqlhinh4 = 'update chitietxe set Hinh4 = "'.$tenfile4.'" where MaXe = "'.$id.'" ';
             mysqli_query($con,$sqlhinh4);
         }
-        if(isset($_FILES['hinh5']['name']))
+        if($_FILES['hinh5']['name'] != null)
         {
             $tenfile5 = basename($_FILES['hinh5']['name']);
             $tenfile_tmp5 = $_FILES['hinh5']['tmp_name'];
             $tenfile_full5 = $thumuc_hinh. $tenfile5;
             uploadhinh($tenfile_tmp5, $tenfile_full5);
+            unlink('../../IMG/Product/'.$hinh5);
             $sqlhinh5 = 'update chitietxe set Hinh5 = "'.$tenfile5.'" where MaXe = "'.$id.'" ';
             mysqli_query($con,$sqlhinh5);
         }
-        if(isset($_FILES['hinh6']['name']))
+        if($_FILES['hinh6']['name'] != null)
         {
             $tenfile6 = basename($_FILES['hinh6']['name']);
             $tenfile_tmp6 = $_FILES['hinh6']['tmp_name'];
             $tenfile_full6 = $thumuc_hinh. $tenfile6;
             uploadhinh($tenfile_tmp6, $tenfile_full6);
+            unlink('../../IMG/Product/'.$hinh6);
             $sqlhinh6 = 'update chitietxe set Hinh6 = "'.$tenfile6.'" where MaXe = "'.$id.'" ';
             mysqli_query($con,$sqlhinh6);
         }
-        if(isset($_FILES['hinh7']['name']))
+        if($_FILES['hinh7']['name'] != null)
         {
             $tenfile7 = basename($_FILES['hinh7']['name']);
             $tenfile_tmp7 = $_FILES['hinh7']['tmp_name'];
             $tenfile_full7 = $thumuc_hinh. $tenfile7;
             uploadhinh($tenfile_tmp7, $tenfile_full7);
-            $sqlhinh7 = 'update chitietxe set Hinh = "'.$tenfile7.'" where MaXe = "'.$id.'" ';
+            unlink('../../IMG/Product/'.$hinh7);
+            $sqlhinh7 = 'update chitietxe set Hinh7 = "'.$tenfile7.'" where MaXe = "'.$id.'" ';
             mysqli_query($con,$sqlhinh7);
         }
         header('location: ../products.php');
@@ -213,7 +226,7 @@
         echo $adbody1;
     ?>
         <div class="body-right">
-            <form name="frm" method="post" action="">
+            <form name="frm" method="post" action="" enctype="multipart/form-data">
                 <div class="modal-body-title">
                     <span class="modal-body-title-name">thông tin sản phẩm</span>
                 </div>
