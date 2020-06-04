@@ -1,4 +1,27 @@
 <?php
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+    
+    require $_SERVER['DOCUMENT_ROOT'] . '/BCCD2/mail/Exception.php';
+    require $_SERVER['DOCUMENT_ROOT'] . '/BCCD2/mail/PHPMailer.php';
+    require $_SERVER['DOCUMENT_ROOT'] . '/BCCD2/mail/SMTP.php';
+    
+    $mail = new PHPMailer;
+    $mail->SMTPAuth = true;
+    $mail->SMTPDebug = 2;
+    $mail->Host = "smtp.gmail.com";
+    $mail->Port = 587;
+    $mail->SMTPSecure = 'ssl';
+    $mail->Username = 'nguyenhuudat10081998@gmail.com';
+    $mail->Password = 'datdaica456';
+    $mail->setFrom('nguyenhuudat10081998@gmail.com', 'Yamaha Motor Việt Nam <nguyenhuudat10081998@gmail.com>');
+    $mail->SMTPOptions = array(
+                        'ssl' => array(
+                            'verify_peer' => false,
+                            'verify_peer_name' => false,
+                            'allow_self_signed' => true
+                        )
+                    );
     include 'INCLUDE/connect.php';
 	include 'INCLUDE/header.php';
     include 'INCLUDE/footer.php';
@@ -61,12 +84,13 @@
         $headers .= 'Content-Type: text/html; charset=utf-8' . "\r\n";
         if($tenkh != "" && $diachi != "" && $sdt != "" && $email != "")
         {
+            mail ($email, $subject, $body, $headers);
             $sql1 = 'select * from khachhang where Sdt = "'.$sdt.'"';
             $rs1 = mysqli_query($con, $sql1);
             if(mysqli_num_rows($rs1)>0)
             {
                 $sql2 = 'insert into dondangki(TenKH,NgayDK,DiaChi,Sdt,Email,MaXe,DaXuLy) values("'.$tenkh.'","'.$ngaydk.'","'.$diachi.'","'.$sdt.'","'.$email.'","'.$id.'","'.$daxuly.'")';
-                if (mysqli_query($con,$sql2) && mail ($email, $subject, $body, $headers))
+                if (mysqli_query($con,$sql2))
                 {
                     $tbao = '<script>alert(\'Đăng kí thành công.\nCảm ơn bạn đã sử dụng dịch vụ của chúng tôi.\nNhân viên tư vấn sẽ liên lạc hỗ trợ bạn trong thời gian sớm nhất.\');</script>';
                     
@@ -80,7 +104,7 @@
             {
                 $sql2 = 'insert into dondangki(TenKH,NgayDK,DiaChi,Sdt,Email,MaXe,DaXuLy) values("'.$tenkh.'","'.$ngaydk.'","'.$diachi.'","'.$sdt.'","'.$email.'","'.$id.'","'.$daxuly.'")';
                 $sql3 = 'insert into khachhang(TenKH,DiaChi,Sdt,Email) values("'.$tenkh.'","'.$diachi.'","'.$sdt.'","'.$email.'")';
-                if (mysqli_query($con,$sql2) && mysqli_query($con,$sql3) && mail($email, $subject, $body, $headers))
+                if (mysqli_query($con,$sql2) && mysqli_query($con,$sql3))
                 {
                     $tbao = '<script>alert(\'Đăng kí thành công.\nCảm ơn bạn đã sử dụng dịch vụ của chúng tôi.\nNhân viên tư vấn sẽ liên lạc hỗ trợ bạn trong thời gian sớm nhất.\');</script>';
                 }
