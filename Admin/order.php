@@ -67,7 +67,7 @@
             <div class="body-main-content">
                 <div class="body-main-content-header">
                     <form action="" method="post">
-                        <input type="text" name="timkiem" id="timkiem" placeholder="Nhập tên sản phẩm" value="<?php if(isset($timkiem)) echo $timkiem; ?>">
+                        <input type="text" name="timkiem" id="timkiem" placeholder="Nhập tên khách hàng" value="<?php if(isset($timkiem)) echo $timkiem; ?>">
                         <input type="submit" name="ok" id="ok" value="Tìm kiếm" onclick="" />
                         <select id="chon" name="chon" style = "font-size: 2rem,padding-left: 10px; margin-left: 30px">
                             <option value="all" <?php if(isset($loc)){if($loc == 'all') echo 'selected = "selected"';} ?>>Tất cả</option>
