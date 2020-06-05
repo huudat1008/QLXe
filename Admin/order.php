@@ -74,7 +74,7 @@
                             <option value="1" <?php if(isset($loc)){if($loc == 1) echo 'selected = "selected"';} ?>>Đã xử lý</option>
                             <option value="0" <?php if(isset($loc)){if($loc == 0) echo 'selected = "selected"';} ?>>Chưa xử lý</option>
                         </select>
-                        <input type="submit" name="loc" id="loc" value="Lọc sản phẩm" onclick="" />
+                        <input type="submit" name="loc" id="loc" value="Lọc đơn hàng" onclick="" />
                     </form>
                 </div>
                 <table class="body-main-content-table">
