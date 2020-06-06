@@ -41,7 +41,7 @@
     padding: 0 10px;
 }
 .main-product-list {
-    height: 1000px;
+    height: auto;
 }
 .main-product-list.moto {
     border-top: 10px solid #013599;
