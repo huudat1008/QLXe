@@ -28,6 +28,7 @@
                         <div class="main-product-col">
                             <div class="main-product-list moto">
                                 <div class="main-product-title">XE SỐ</div>
+                                <div class="main-product-content">
                                 <?php
                                     $sql = 'select * from xe where MaLoai="XS"';
                                     $rs = mysqli_query($con, $sql);
@@ -54,6 +55,7 @@
                                         }
                                     }
                                 ?>
+                                </div>
                             </div>
                         </div>
                         <div class="main-product-col">

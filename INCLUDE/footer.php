@@ -43,7 +43,7 @@ $footer = '<footer class="footer">
                 <li class="footer-right-item">
                     <a href="" class="footer-right-link">CHÍNH SÁCH BẢO MẬT</a>
                 </li>
-                <li class="footer-right-item">
+                <li class="footer-right-item respon">
                     <a href="/BCCD2/Admin/login" class="footer-right-link">TÀI LIỆU THIẾT KẾ</a>
                 </li>
             </ul>

@@ -122,6 +122,38 @@ $header = '<header class="header">
                 </li>
             </ul>
         </div>
+        <div class="header-menu">
+            <label for="check">
+                <img src="IMG/menu.png" alt="" class="header-menu-img">
+            </label>
+            <input type="checkbox" hidden name="" id="check" class="header-menu-input">
+            <label for="check" class="overlay"></label>
+            <div class="mobile">
+                <ul class="mobile-top">
+                    <li class="mobile-top-link">
+                        <a href="products" >SẢN PHẨM</a>
+                    </li>
+                    <li class="mobile-top-link"><a href="" >công nghệ</a></li>
+                    <li class="mobile-top-link"><a href="" >dịch vụ</a></li>
+                    <li class="mobile-top-link"><a href="" >phụ tùng</a></li>
+                    <li class="mobile-top-link"><a href="" >khuyến mãi</a></li>
+                    <li class="mobile-top-link"><a href="" >Đại lý</a></li>
+                    <li class="mobile-bottom-link"><a href="" >về yamaha</a></li>
+                    <li class="mobile-bottom-link"><a href="" >tin tức</a></li>
+                    <li class="mobile-bottom-link"><a href="" >tuyển dụng</a></li>
+                    <li class="mobile-bottom-link"><a href="" >catalogue điện tử</a></li>
+                    <li class="mobile-bottom-link"><a href="" >liên hệ</a></li>
+                    <li class="mobile-bottom-link"><a href="" >tìm kiếm</a></li>
+                    <li class="mobile-bottom-link"><a href="" >hỏi đáp</a></li>
+                    <li class="mobile-bottom-link"><a href="" >chính sách bảo mật</a></li>
+                    <li class="mobile-bottom-link"><a href="" >hotline: 18001588</a></li>
+                </ul>
+                <div class="mobile-bottom">
+                    <span class="mobile-copyright">© 2019 BẢN QUYỀN THUỘC VỀ YAMAHA MOTOR VIỆT NAM</span>
+                    <span class="mobile-copyright">Sinh viên thực hiện: Nguyễn Hữu Đạt</span>
+                </div>
+            </div>
+        </div>
     </div>
 </header>';
 ?>

@@ -210,6 +210,8 @@ html {
     position: relative;
     padding: 15px 30px;
     border: #ffffff solid 1px;
+    display: flex;
+    justify-content: center;
 }
 .footer-social-text {
     position: absolute;
@@ -218,7 +220,7 @@ html {
     text-align: center;
     background-color: black;
     line-height: 1;
-    left: 7%;
+    /* left: 7%; */
     top: -10%;
     margin: 0;
     padding: 0 10px;
@@ -228,6 +230,7 @@ html {
     padding-left: 0;
     margin: 0;
     display: flex;
+    justify-content: space-around;
 }
 .footer-social-item {
     margin: 0 15px;
@@ -304,4 +307,142 @@ html {
     position: relative;
     border-radius: 5px;
     animation: growth linear 0.1s;
+}
+/*-----------Responsive----------*/
+.overlay {
+    position: fixed;
+    top: 64px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    animation: fadeIn linear 0.3s;
+}
+.header-menu {
+    display: none;
+    margin-left: 10px;
+}
+.header-menu-img {
+    width: 30px;
+}
+.mobile {
+    position: fixed;
+    top: 64px;
+    left:0;
+    bottom: 0;
+    width: 300px;
+    background-color: white;
+    z-index: 1100;
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: all linear 0.3s;
+    overflow-y: scroll;
+}
+.mobile-top {
+    list-style: none;
+    padding: 0;
+}
+.mobile-top-link {
+    color: black;
+    padding: 10px 0;
+    margin: 0 10px;
+    border-bottom: 1px solid #404040;
+}
+.mobile-top-link a {
+    color: black;
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.mobile-bottom-link {
+    color: black;
+    padding: 10px 0;
+    margin: 0 10px;
+}
+.mobile-bottom-link a {
+    color: black;
+    text-decoration: none;
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.mobile-bottom {
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    height: 30px;
+    border-top: 1px solid black;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.mobile-copyright {
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 2px;
+}
+.header-menu-input:checked ~ .overlay {
+    display: block;
+}
+.header-menu-input:checked ~ .mobile {
+    transform: translateX(0%);
+    opacity: 1;
+}
+@media only screen and (max-height:666px)
+{
+    .mobile-bottom{
+        position: unset;
+        margin-bottom: 15px;
+    }
+}
+@media only screen and (max-width: 739px)
+{
+    .header-row {
+        height: 64px;
+        padding: 0;
+    }
+    .header-logo {
+        position: absolute;
+        top: 20%;
+        left: 35%;
+    }
+    .header-left {
+        display: none;
+    }
+    .footer-right {
+        display: none;
+    }
+    .footer-left {
+        width: 100%;
+    }
+    .header-menu {
+        display: block;
+    }
+    html {
+        font-size: 40%;
+    }
+}
+@media only screen and (min-width: 740px) and (max-width: 1000px)
+{
+    .respon {
+        display: none;
+    }
+    html{
+        font-size: 50%;
+    }
+    .header-top-items {
+        margin-left: 15px;
+    }
+    .header-item-link {
+        padding: 0px 10px;
+    }
+    .product {
+        left: calc(50% - 250px);
+    }
 }
