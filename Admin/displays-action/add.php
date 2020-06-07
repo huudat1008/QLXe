@@ -4,7 +4,7 @@
     include ('../../INCLUDE/connect.php');
     if(!isset($_SESSION['user']))
     {
-        header('location: ../login.php');
+        header('location: ../login');
     }
     $user = $_SESSION['user'];
     if(isset($_POST['them']))
@@ -38,14 +38,14 @@
         if ($kq_upload_hinh==1){
             $sql = 'insert into giaodien(IMG) values("'.$tenfile.'")';
             mysqli_query($con,$sql);
-            header('location:../display.php');
+            header('location:../display');
         }
         else {
             $tbao = '<script>alert(\'Upload hình không thành công.\nVui lòng kiểm tra và thử lại.\');</script>';
         }
     }
     if(isset($_POST['huybo']))
-        header('location:../display.php');
+        header('location:../display');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,13 +64,13 @@
         echo $adheader;
         if($user == 'admin')
         {
-            echo '<a href="user.php" class="admin-header-center-link">User</a>';
+            echo '<a href="user" class="admin-header-center-link">User</a>';
         }
         echo $adheader1.$user.$adheader2;
         echo $adbody;
         if($user == 'admin')
         {
-        echo '<a href="user.php" class="body-left-group">
+        echo '<a href="user" class="body-left-group">
                 <img src="../../IMG/user.png" alt="" class="body-left-group-icon">
                 <span class="body-left-group-title">Quản lý User</span>
             </a>';

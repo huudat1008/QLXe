@@ -4,11 +4,11 @@
     include ('../INCLUDE/admin.php');
     $user = $_SESSION['user'];
     if(!isset($user))
-        header('location: login.php');
+        header('location: login');
     if(isset($_POST['thoat']))
     {
         unset($_SESSION['user']);
-        header('location: login.php');
+        header('location: login');
     }
     if(isset($_POST['ok']))
     {
@@ -34,13 +34,13 @@
         echo $adheader;
         if($user == 'admin')
         {
-            echo '<a href="user.php" class="admin-header-center-link">User</a>';
+            echo '<a href="user" class="admin-header-center-link">User</a>';
         }
         echo $adheader1.$user.$adheader2;
         echo $adbody;
         if($user == 'admin')
         {
-        echo '<a href="user.php" class="body-left-group">
+        echo '<a href="user" class="body-left-group">
                 <img src="../IMG/user.png" alt="" class="body-left-group-icon">
                 <span class="body-left-group-title">Quản lý User</span>
             </a>';
@@ -84,8 +84,8 @@
                                     <td>'.$sdt.'</td>
                                     <td>'.$email.'</td>
                                     <td>
-                                        <a href="customers/edit.php?id='.$makh.'"><img src="../IMG/update.png" alt="" class="table-img"></a>
-                                        <a href="customers/delete.php?id='.$makh.'"><img src="../IMG/delete.png" alt="" class="table-img"></a>
+                                        <a href="customers-action/edit?id='.$makh.'"><img src="../IMG/update.png" alt="" class="table-img"></a>
+                                        <a href="customers-action/delete?id='.$makh.'"><img src="../IMG/delete.png" alt="" class="table-img"></a>
                                     </td>
                                 </tr>';
                             $stt++;

@@ -2,40 +2,47 @@
     session_start();
     include ('../../INCLUDE/adminedit.php');
     include ('../../INCLUDE/connect.php');
-    if(!isset($_SESSION['user']))
-        header('location: ../login.php');
+    if(!isset($_SESSION['user']) || $_SESSION['user'] != 'admin')
+        header('location: ../login');
     $user = $_SESSION['user'];
-    if(isset($_POST['huybo']))
-        header('location: ../index.php');
-    if(isset($_POST['sua']))
+    if(isset($_POST['them']))
     {
-        $username = $_SESSION['user'];
+        $username = $_POST['username'];
         $password = $_POST['password'];
-        $newpassword = $_POST['newpassword'];
         $conpass = $_POST['conpass'];
-        if($password != '' && $newpassword != '' && $conpass != '')
+        if($username != '' && $password != '' && $conpass != '')
         {
-            $sql = 'select * from user where Username = "'.$username.'" and Password = "'.$password.'"';
+            $trung = 0;
+            $sql = 'select * from user';
             $rs = mysqli_query($con, $sql);
-            if(mysqli_num_rows($rs)>0)
+            while ($r = mysqli_fetch_assoc($rs)){
+                $username1 = $r['Username'];
+                if($username1 == $username)
+                    $trung++;
+            }
+            if($trung == 0)
             {
-                if($newpassword == $conpass)
+                if($password == $conpass)
                 {
-                    $sql1 = 'update user set Username = "'.$username.'", Password = "'.$newpassword.'" where Username = "'.$username.'"';
+                    $sql1 = 'insert into user(Username,Password) values ("'.$username.'","'.$password.'")';
                     if(mysqli_query($con, $sql1))
                     {
-                        header('location:../index.php');
+                        header('location:../user');
                     }
                 }
                 else
-                    $tbao = '<script>alert(\'Xác nhận mật khẩu không đúng.\');</script>';
+                    $tbao = '<script>alert(\'Xác nhận mật khẩu chưa đúng.\');</script>';
             }
             else
-                $tbao = '<script>alert(\'Mật khẩu không đúng.\');</script>';
+            {
+                $tbao = '<script>alert(\'Tên đăng nhập đã có người sử dụng.\');</script>';
+            }
         }
         else
             $tbao = '<script>alert(\'Bạn vui lòng nhập đầy đủ thông tin.\');</script>';
     }
+    if(isset($_POST['huybo']))
+        header('location:../user');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,13 +61,13 @@
         echo $adheader;
         if($user == 'admin')
         {
-            echo '<a href="user.php" class="admin-header-center-link">User</a>';
+            echo '<a href="user" class="admin-header-center-link">User</a>';
         }
         echo $adheader1.$user.$adheader2;
         echo $adbody;
         if($user == 'admin')
         {
-        echo '<a href="user.php" class="body-left-group">
+        echo '<a href="user" class="body-left-group">
                 <img src="../../IMG/user.png" alt="" class="body-left-group-icon">
                 <span class="body-left-group-title">Quản lý User</span>
             </a>';
@@ -72,31 +79,29 @@
         <div class="modal-body">
             <form name="frmDangnhap" method="post" action="">
                 <div class="modal-body-title">
-                    <span class="modal-body-title-name">Đổi mật khẩu</span>
+                    <span class="modal-body-title-name">Thêm User mới</span>
                 </div>
                 <div class="modal-body-main">
                     <div class="modal-body-group">
-                        <span class="modal-body-label">Mật khẩu cũ:</span>
-                        <input class="modal-body-input" type="password" name="password" id="password"></input>
+                        <span class="modal-body-label">Tên đăng nhập:</span>
+                        <input class="modal-body-input" type="text" name="username" id="username" />
                     </div>
                     <div class="modal-body-group">
-                        <span class="modal-body-label">Mật khẩu mới:</span>
-                        <input class="modal-body-input" type="password" name="newpassword" id="newpassword"></input>
+                        <span class="modal-body-label">Mật khẩu:</span>
+                        <input class="modal-body-input" type="password" name="password" id="password"></input>
                     </div>
                     <div class="modal-body-group">
                         <span class="modal-body-label">Nhập lại mật khẩu:</span>
                         <input class="modal-body-input" type="password" name="conpass" id="conpass"></input>
                     </div>
                     <div class="modal-body-btn">
-                        <input type="submit" name="sua" id="sua" value="Xác nhận" onclick="" />
+                        <input type="submit" name="them" id="them" value="Thêm mới" onclick="" />
                         <input type="submit" name="huybo" id="huybo" value="Hủy bỏ" onclick="" />
                     </div>
                 </div>
             </form>
         </div>
     </div>
-    <?php
-        if(isset($tbao)) echo $tbao;
-    ?>
+    <?php if(isset($tbao)) echo $tbao; ?>
 </body>
 </html>

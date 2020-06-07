@@ -3,10 +3,10 @@
     include ('../../INCLUDE/adminedit.php');
     include ('../../INCLUDE/connect.php');
     if(!isset($_SESSION['user']))
-        header('location: ../login.php');
+        header('location: ../login');
     $user = $_SESSION['user'];
     if(isset($_POST['huybo']))
-        header('location: ../products.php');
+        header('location: ../product');
     if(isset($_POST['them']))
     {
         $maxe = $_POST['maxe'];
@@ -97,7 +97,7 @@
                         $i = $key+1;
                         $sql2 = 'update chitietxe set hinh'.$i.'= "'.$tenhinh.'" where MaXe = "'.$maxe.'" ';
                         mysqli_query($con,$sql2);
-                        header('location: ../products.php');
+                        header('location: ../product');
                     }
                 }
             }
@@ -124,13 +124,13 @@
         echo $adheader;
         if($user == 'admin')
         {
-            echo '<a href="../user.php" class="admin-header-center-link">User</a>';
+            echo '<a href="../user" class="admin-header-center-link">User</a>';
         }
         echo $adheader1.$user.$adheader2;
         echo $adbody;
         if($user == 'admin')
         {
-        echo '<a href="../user.php" class="body-left-group">
+        echo '<a href="../user" class="body-left-group">
                 <img src="../../IMG/user.png" alt="" class="body-left-group-icon">
                 <span class="body-left-group-title">Quản lý User</span>
             </a>';

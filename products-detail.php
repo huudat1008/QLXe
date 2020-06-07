@@ -29,7 +29,7 @@
     if (isset($_GET['id']))
         $id= $_GET['id'];
     else
-        header('location: products.php');
+        header('location: products');
     $sql = 'select chitietxe.*,TenXe,Gia,Hinh FROM chitietxe,xe where chitietxe.MaXe="'.$id.'" and chitietxe.MaXe = xe.MaXe';
     $rs = mysqli_query($con, $sql);
     while ($row = mysqli_fetch_assoc($rs))

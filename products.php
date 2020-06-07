@@ -43,12 +43,12 @@
                                             echo '<div class="main-product-item">
                                                     <div class="main-product-item-bg"></div>
                                                     <h3 class="main-product-item-name">'.$tenxe.'</h3>
-                                                    <a href="products-detail.php?id='.$maxe.'" class="main-product-item-link">
+                                                    <a href="products-detail?id='.$maxe.'" class="main-product-item-link">
                                                         <img src="IMG/Product/'.$hinh.'" alt="'.$tenxe.'">
                                                     </a>
                                                     <div class="main-product-item-bottom">
                                                         <div class="main-product-item-price">'.$gia.' VNĐ</div>
-                                                        <a href="products-detail.php?id='.$maxe.'" class="main-product-item-btn">Xem chi tiết</a>
+                                                        <a href="products-detail?id='.$maxe.'" class="main-product-item-btn">Xem chi tiết</a>
                                                     </div>
                                                 </div>';
                                         }
@@ -75,12 +75,12 @@
                                             echo '<div class="main-product-item">
                                                     <div class="main-product-item-bg"></div>
                                                     <h3 class="main-product-item-name">'.$tenxe.'</h3>
-                                                    <a href="products-detail.php?id='.$maxe.'" class="main-product-item-link">
+                                                    <a href="products-detail?id='.$maxe.'" class="main-product-item-link">
                                                         <img src="IMG/Product/'.$hinh.'" alt="'.$tenxe.'">
                                                     </a>
                                                     <div class="main-product-item-bottom">
                                                         <div class="main-product-item-price">'.$gia.' VNĐ</div>
-                                                        <a href="products-detail.php?id='.$maxe.'" class="main-product-item-btn">Xem chi tiết</a>
+                                                        <a href="products-detail?id='.$maxe.'" class="main-product-item-btn">Xem chi tiết</a>
                                                     </div>
                                                 </div>';
                                         }
@@ -108,12 +108,12 @@
                                             echo '<div class="main-product-item">
                                                     <div class="main-product-item-bg"></div>
                                                     <h3 class="main-product-item-name">'.$tenxe.'</h3>
-                                                    <a href="products-detail.php?id='.$maxe.'" class="main-product-item-link">
+                                                    <a href="products-detail?id='.$maxe.'" class="main-product-item-link">
                                                         <img src="IMG/Product/'.$hinh.'" alt="'.$tenxe.'">
                                                     </a>
                                                     <div class="main-product-item-bottom">
                                                         <div class="main-product-item-price">'.$gia.' VNĐ</div>
-                                                        <a href="products-detail.php?id='.$maxe.'" class="main-product-item-btn">Xem chi tiết</a>
+                                                        <a href="products-detail?id='.$maxe.'" class="main-product-item-btn">Xem chi tiết</a>
                                                     </div>
                                                 </div>';
                                         }

@@ -16,7 +16,7 @@
             if(mysqli_num_rows($rs)>0)
             {
                 $_SESSION['user'] = $user;
-                header('location: index.php');
+                header('location: index');
             }
             else
                 $tbao = '<script>alert(\'Tên đăng nhập hoặc mật khẩu không đúng.\');</script>';

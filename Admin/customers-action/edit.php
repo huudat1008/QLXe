@@ -3,10 +3,10 @@
     include ('../../INCLUDE/adminedit.php');
     include ('../../INCLUDE/connect.php');
     if(!isset($_SESSION['user']))
-        header('location: ../login.php');
+        header('location: ../login');
     $user = $_SESSION['user'];
     if(isset($_POST['huybo']))
-        header('location: ../customers.php');
+        header('location: ../customer');
     if (isset($_GET['id']))
     {
         $id = $_GET['id'];
@@ -20,7 +20,7 @@
         }
     }
     else
-        header('location: ../customers.php');
+        header('location: ../customer');
     if(isset($_POST['sua']))
     {
         $tenkh1 = $_POST['tenkh'];
@@ -32,7 +32,7 @@
             $sql1 = 'update khachhang set TenKH = "'.$tenkh1.'", DiaChi = "'.$diachi1.'", Sdt = "'.$sdt1.'", Email = "'.$email1.'" where MaKH = "'.$id.'"';
             if(mysqli_query($con, $sql1))
             {
-                header('location:../customers.php');
+                header('location:../customer');
             }
         }
         else
@@ -56,13 +56,13 @@
         echo $adheader;
         if($user == 'admin')
         {
-            echo '<a href="user.php" class="admin-header-center-link">User</a>';
+            echo '<a href="user" class="admin-header-center-link">User</a>';
         }
         echo $adheader1.$user.$adheader2;
         echo $adbody;
         if($user == 'admin')
         {
-        echo '<a href="user.php" class="body-left-group">
+        echo '<a href="user" class="body-left-group">
                 <img src="../../IMG/user.png" alt="" class="body-left-group-icon">
                 <span class="body-left-group-title">Quản lý User</span>
             </a>';

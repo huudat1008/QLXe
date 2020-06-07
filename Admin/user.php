@@ -4,11 +4,11 @@
     include ('../INCLUDE/admin.php');
     $user = $_SESSION['user'];
     if(!isset($user) || $user != 'admin')
-        header('location: login.php');
+        header('location: login');
     if(isset($_POST['thoat']))
     {
         unset($_SESSION['user']);
-        header('location: login.php');
+        header('location: login');
     }
     if(isset($_POST['ok']))
     {
@@ -34,13 +34,13 @@
         echo $adheader;
         if($user == 'admin')
         {
-            echo '<a href="user.php" class="admin-header-center-link">User</a>';
+            echo '<a href="user" class="admin-header-center-link">User</a>';
         }
         echo $adheader1.$user.$adheader2;
         echo $adbody;
         if($user == 'admin')
         {
-        echo '<a href="user.php" class="body-left-group">
+        echo '<a href="user" class="body-left-group">
                 <img src="../IMG/user.png" alt="" class="body-left-group-icon">
                 <span class="body-left-group-title">Quản lý User</span>
             </a>';
@@ -58,7 +58,7 @@
                         <input type="text" name="timkiem" id="timkiem" placeholder="Nhập Username" value="<?php if(isset($timkiem)) echo $timkiem; ?>">
                         <input type="submit" name="ok" id="ok" value="Tìm kiếm" onclick="" />
                     </form>
-                    <a href="user/add.php" class="add">
+                    <a href="users-action/add" class="add">
                         <img src="../IMG/add.png" alt="" class="add-img">
                         <span class="add-content">Thêm mới</span>
                     </a>
@@ -94,7 +94,7 @@
                                         <td>'.$username.'</td>
                                         <td>'.$pass.'</td>
                                         <td>
-                                            <a href="user/delete.php?id='.$username.'"><img src="../IMG/delete.png" alt="" class="table-img"></a>
+                                            <a href="users-action/delete?id='.$username.'"><img src="../IMG/delete.png" alt="" class="table-img"></a>
                                         </td>
                                     </tr>';
                             }

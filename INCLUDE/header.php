@@ -3,7 +3,7 @@ include 'connect.php';
 $header = '<header class="header">
     <div class="header-row">
         <div class="header-logo">
-            <a href="index.php"><img src="IMG/logo.png" alt="" class="header-logo-img"></a>
+            <a href="index"><img src="IMG/logo.png" alt="" class="header-logo-img"></a>
         </div>
         <div class="header-left">
             <ul class="header-top">
@@ -27,7 +27,7 @@ $header = '<header class="header">
             </ul>
             <ul class="header-list">
                 <li class="header-item">
-                    <a href="products.php" class="header-item-link">SẢN PHẨM</a>
+                    <a href="products" class="header-item-link">SẢN PHẨM</a>
                     <div class="product">
                         <ul class="product-list">
                             <li class="product-item">
@@ -44,7 +44,7 @@ $header = '<header class="header">
                                         if ( $hienthi == 1 )
                                         {
                                             $header = $header. '<div class="product-column">
-                                                    <a href="products-detail.php?id='.$maxe.'" class="product-link">
+                                                    <a href="products-detail?id='.$maxe.'" class="product-link">
                                                         <img src="IMG/Product/'.$hinh.'" alt="'.$tenxe.'" class="product-img">
                                                         <span class="product-name">'.$tenxe.'</span>
                                                     </a>
@@ -68,7 +68,7 @@ $header = '<header class="header">
                                         if ( $hienthi == 1 )
                                         {
                                             $header = $header. '<div class="product-column">
-                                                    <a href="products-detail.php?id='.$maxe.'" class="product-link">
+                                                    <a href="products-detail?id='.$maxe.'" class="product-link">
                                                         <img src="IMG/Product/'.$hinh.'" alt="'.$tenxe.'" class="product-img">
                                                         <span class="product-name">'.$tenxe.'</span>
                                                     </a>
@@ -92,7 +92,7 @@ $header = '<header class="header">
                                         if ( $hienthi == 1 )
                                         {
                                             $header = $header. '<div class="product-column">
-                                                    <a href="products-detail.php?id='.$maxe.'" class="product-link">
+                                                    <a href="products-detail?id='.$maxe.'" class="product-link">
                                                         <img src="IMG/Product/'.$hinh.'" alt="'.$tenxe.'" class="product-img">
                                                         <span class="product-name">'.$tenxe.'</span>
                                                     </a>

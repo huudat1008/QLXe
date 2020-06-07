@@ -11,10 +11,10 @@
             $hinh = $_GET['img'];
         }
         else
-            header('location: ../products.php');
+            header('location: ../product');
     }
     else
-        header('location: ../products.php');
+        header('location: ../product');
     $sql = 'select * from chitietxe where MaXe = "'.$id.'"';
     $rs = mysqli_query($con, $sql);
     $r = mysqli_fetch_assoc($rs);
@@ -36,5 +36,5 @@
     unlink('../../IMG/Product/'.$hinh6);
     unlink('../../IMG/Product/'.$hinh7);
     if(mysqli_query($con, $sql1) && mysqli_query($con, $sql2))
-        header('location: ../products.php');
+        header('location: ../product');
 ?>

@@ -4,11 +4,11 @@
     include ('../INCLUDE/admin.php');
     $user = $_SESSION['user'];
     if(!isset($user))
-        header('location: login.php');
+        header('location: login');
     if(isset($_POST['thoat']))
     {
         unset($_SESSION['user']);
-        header('location: login.php');
+        header('location: login');
     }
     if(isset($_POST['ok']))
     {
@@ -46,13 +46,13 @@
         echo $adheader;
         if($user == 'admin')
         {
-            echo '<a href="user.php" class="admin-header-center-link">User</a>';
+            echo '<a href="user" class="admin-header-center-link">User</a>';
         }
         echo $adheader1.$user.$adheader2;
         echo $adbody;
         if($user == 'admin')
         {
-        echo '<a href="user.php" class="body-left-group">
+        echo '<a href="user" class="body-left-group">
                 <img src="../IMG/user.png" alt="" class="body-left-group-icon">
                 <span class="body-left-group-title">Quản lý User</span>
             </a>';
@@ -105,12 +105,12 @@
                             $daxuly = $r['DaXuLy'];
                             if($daxuly == 0)
                                 $trangthai = '<td style="color: red;">Chưa xử lý</td><td>
-                                <a href="order/edit.php?id='.$madon.'"><img src="../IMG/xuly.png" alt="" class="table-img"></a>
-                                <a href="order/delete.php?id='.$madon.'"><img src="../IMG/delete.png" alt="" class="table-img"></a>
+                                <a href="orders-action/edit?id='.$madon.'"><img src="../IMG/xuly.png" alt="" class="table-img"></a>
+                                <a href="orders-action/delete?id='.$madon.'"><img src="../IMG/delete.png" alt="" class="table-img"></a>
                                 </td>';
                             else
                                 $trangthai = '<td style="color: green;">Đã xử lý</td><td>
-                                <a href="order/delete.php?id='.$madon.'"><img src="../IMG/delete.png" alt="" class="table-img"></a>
+                                <a href="orders-action/delete?id='.$madon.'"><img src="../IMG/delete.png" alt="" class="table-img"></a>
                                 </td>';
                             echo '<tr>
                                     <td>'.$stt.'</td>

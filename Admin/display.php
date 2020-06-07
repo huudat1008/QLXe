@@ -4,11 +4,11 @@
     include ('../INCLUDE/admin.php');
     $user = $_SESSION['user'];
     if(!isset($user))
-        header('location: login.php');
+        header('location: login');
     if(isset($_POST['thoat']))
     {
         unset($_SESSION['user']);
-        header('location: login.php');
+        header('location: login');
     }
 ?>
 <!DOCTYPE html>
@@ -27,13 +27,13 @@
         echo $adheader;
         if($user == 'admin')
         {
-            echo '<a href="user.php" class="admin-header-center-link">User</a>';
+            echo '<a href="user" class="admin-header-center-link">User</a>';
         }
         echo $adheader1.$user.$adheader2;
         echo $adbody;
         if($user == 'admin')
         {
-        echo '<a href="user.php" class="body-left-group">
+        echo '<a href="user" class="body-left-group">
                 <img src="../IMG/user.png" alt="" class="body-left-group-icon">
                 <span class="body-left-group-title">Quản lý User</span>
             </a>';
@@ -48,7 +48,7 @@
             <div class="body-main-content">
                 <div class="body-main-content-header">
                     <span class="body-main-content-header-title">Danh sách hình ảnh hiển thị ở trang chủ</span>
-                    <a href="display/add.php" class="add">
+                    <a href="displays-action/add" class="add">
                         <img src="../IMG/add.png" alt="" class="add-img">
                         <span class="add-content">Thêm mới</span>
                     </a>
@@ -69,7 +69,7 @@
                             echo '<tr>
                                     <td>'.$stt.'</td>
                                     <td> <img src="../IMG/'.$img.'" style = "width: 500px;" ></td>
-                                    <td><a href="display/delete.php?id='.$id.'&img='.$img.'"><img src="../IMG/delete.png" alt="" class="table-img"></a></td>
+                                    <td><a href="displays-action/delete?id='.$id.'&img='.$img.'"><img src="../IMG/delete.png" alt="" class="table-img"></a></td>
                                     </tr>';
                             $stt++;
                         }

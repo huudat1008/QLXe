@@ -3,10 +3,10 @@
     include ('../../INCLUDE/adminedit.php');
     include ('../../INCLUDE/connect.php');
     if(!isset($_SESSION['user']))
-        header('location: ../login.php');
+        header('location: ../login');
     $user = $_SESSION['user'];
     if(isset($_POST['huybo']))
-        header('location: ../products.php');
+        header('location: ../product');
     $hinh1 = '';
     $hinh2 = '';
     $hinh3 = '';
@@ -55,7 +55,7 @@
             $hinh7 = $row['Hinh7'];
     }
     else
-        header('location: ../products.php');
+        header('location: ../product');
     function uploadhinh($tenfile_tmp, $tenfile_full) {
         $ktra = 1;
         if (file_exists($tenfile_full)) {
@@ -192,7 +192,7 @@
             $sqlhinh7 = 'update chitietxe set Hinh7 = "'.$tenfile7.'" where MaXe = "'.$id.'" ';
             mysqli_query($con,$sqlhinh7);
         }
-        header('location: ../products.php');
+        header('location: ../product');
     }
 ?>
 <!DOCTYPE html>
@@ -212,13 +212,13 @@
         echo $adheader;
         if($user == 'admin')
         {
-            echo '<a href="../user.php" class="admin-header-center-link">User</a>';
+            echo '<a href="../user" class="admin-header-center-link">User</a>';
         }
         echo $adheader1.$user.$adheader2;
         echo $adbody;
         if($user == 'admin')
         {
-        echo '<a href="../user.php" class="body-left-group">
+        echo '<a href="../user" class="body-left-group">
                 <img src="../../IMG/user.png" alt="" class="body-left-group-icon">
                 <span class="body-left-group-title">Quản lý User</span>
             </a>';

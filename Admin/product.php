@@ -4,11 +4,11 @@
     include ('../INCLUDE/admin.php');
     $user = $_SESSION['user'];
     if(!isset($user))
-        header('location: login.php');
+        header('location: login');
     if(isset($_POST['thoat']))
     {
         unset($_SESSION['user']);
-        header('location: login.php');
+        header('location: login');
     }
     if(isset($_POST['ok']))
     {
@@ -46,13 +46,13 @@
         echo $adheader;
         if($user == 'admin')
         {
-            echo '<a href="user.php" class="admin-header-center-link">User</a>';
+            echo '<a href="user" class="admin-header-center-link">User</a>';
         }
         echo $adheader1.$user.$adheader2;
         echo $adbody;
         if($user == 'admin')
         {
-        echo '<a href="user.php" class="body-left-group">
+        echo '<a href="user" class="body-left-group">
                 <img src="../IMG/user.png" alt="" class="body-left-group-icon">
                 <span class="body-left-group-title">Quản lý User</span>
             </a>';
@@ -77,7 +77,7 @@
                         </select>
                         <input type="submit" name="loc" id="loc" value="Lọc sản phẩm" onclick="" />
                     </form>
-                    <a href="products/add.php" class="add">
+                    <a href="products-action/add" class="add">
                         <img src="../IMG/add.png" alt="" class="add-img">
                         <span class="add-content">Thêm mới</span>
                     </a>
@@ -115,8 +115,8 @@
                                     <td>'.$gia.'</td>
                                     <td>'.$check.'</td>
                                     <td> <img src="../IMG/Product/'.$hinh.'" style = "width: 100px;" ></td>
-                                    <td><a href="products/edit.php?id='.$maxe.'" style = "color: #428BCA">Xem chi tiết</a></td>
-                                    <td><a href="products/delete.php?id='.$maxe.'&img='.$hinh.'"><img src="../IMG/delete.png" alt="" class="table-img"></a></td>
+                                    <td><a href="products-action/edit?id='.$maxe.'" style = "color: #428BCA">Xem chi tiết</a></td>
+                                    <td><a href="products-action/delete?id='.$maxe.'&img='.$hinh.'"><img src="../IMG/delete.png" alt="" class="table-img"></a></td>
                                     </tr>';
                             $stt++;
                         }
